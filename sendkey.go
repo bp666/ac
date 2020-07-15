@@ -19,9 +19,9 @@ func sendChar(char uint16) {
 	input.tp = inputKeyBoard
 	input.ki.wScan = char
 
-	input.ki.dwFlags = KeyEventFUnicode
+	input.ki.dwFlags = keyEventFUnicode
 	mySendInput(unsafe.Pointer(&input), int32(unsafe.Sizeof(input)))
 
-	input.ki.dwFlags = KeyEventFUnicode | KeyEventFKeyUp
+	input.ki.dwFlags = keyEventFUnicode | keyEventFKeyUp
 	mySendInput(unsafe.Pointer(&input), int32(unsafe.Sizeof(input)))
 }

@@ -21,9 +21,9 @@ type keyBdInput struct {
 
 const (
 	keyEventFExtendedKey = 0x0001
-	KeyEventFKeyUp       = 0x0002
-	KeyEventFScanCode    = 0x0008
-	KeyEventFUnicode     = 0x0004
+	keyEventFKeyUp       = 0x0002
+	keyEventFScanCode    = 0x0008
+	keyEventFUnicode     = 0x0004
 )
 
 var (
@@ -36,7 +36,7 @@ var (
 func init() {
 	kdownInput.tp = inputKeyBoard
 	kupInput.tp = inputKeyBoard
-	kupInput.ki.dwFlags = KeyEventFKeyUp
+	kupInput.ki.dwFlags = keyEventFKeyUp
 
 	keysMap = map[string]int{
 		"back":  0x08,
