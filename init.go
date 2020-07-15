@@ -6,9 +6,9 @@ import (
 )
 
 // INPU TYPE:
-// 0 鼠标
-// 1 键盘
-// 2 硬件
+// 0 mouse
+// 1 keyboard
+// 2 hardware
 const (
 	inputMouse    = 0
 	inputKeyBoard = 1
@@ -39,24 +39,9 @@ var (
 	lstrcpyW     = kernel32.NewProc("lstrcpyW")
 )
 
-// 调用方法一：LazyProc
-// Call 方法最多包含15个参数
 func mySendInput(pInputs unsafe.Pointer, cbSize int32) {
-	// 1 表示 pInputs数组只有一个元素
 	sendInput.Call(uintptr(1), uintptr(pInputs), uintptr(cbSize))
-	// println(err.Error())
 }
-
-// 调用方法二：syscall
-// Syscall、Syscall6、Syscall9、Syscall12、Syscall15
-// 对应于参数<= 3/6/9/12/15
-
-// func mySendInput(cInputs uint32, pInputs unsafe.Pointer, cbSize int32) {
-// 	syscall.Syscall(sendInput.Addr(), 3,
-// 		uintptr(cInputs),
-// 		uintptr(pInputs),
-// 		uintptr(cbSize))
-// }
 
 func mySetCursorPos(x, y int32) {
 	setCursorPos.Call(uintptr(x), uintptr(y))
@@ -67,7 +52,6 @@ func mygetCursorPos(lpPoint unsafe.Pointer) {
 }
 
 func myOpenClipboard() {
-	// 0 means open clipboard in the current active window
 	openClipboard.Call(0)
 }
 
@@ -90,9 +74,6 @@ func myCloseClipboard() {
 
 func myGlobalAlloc(dataSize int) uintptr {
 	pMem, _, _ := globalAlloc.Call(gMemMoveable, uintptr(dataSize))
-	if pMem == 0 {
-		panic("Memory allocation error.")
-	}
 	return pMem
 }
 

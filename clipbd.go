@@ -24,15 +24,3 @@ func Copy(text string) {
 
 	mySetClipboardData(pm)
 }
-
-// Paste data from clipboard
-// func Paste() string {
-// 	myOpenClipboard()
-// 	defer myCloseClipboard()
-// 	handle := myGetClipboardData()
-// 	block := myGlobalLock(handle)
-// 	v := (*[10]uint16)(unsafe.Pointer(block))
-// 	text := syscall.UTF16ToString(v[:])
-// 	myGlobalUnlock(handle)
-// 	return text
-// }

@@ -10,12 +10,6 @@ type tagKeyBdInput struct {
 	ki keyBdInput
 }
 
-// KEYBDINPUT:
-// wVk (虚拟键码)
-// wScan (输入码)
-// dwFlags (按键标志)
-// time (时间戳,0为系统提供)
-// dwExtraInfo (与dwFlags 4有关)
 type keyBdInput struct {
 	wVk         uint16
 	wScan       uint16
@@ -25,11 +19,6 @@ type keyBdInput struct {
 	Unused      [8]byte
 }
 
-// keyBdInput dwFlags:
-// 1 (wScan前加前缀0xE0)
-// 2 (不指定为down)
-// 8 (键盘输入方法)
-// 4 (非键盘输入方法，WVK需0)
 const (
 	keyEventFExtendedKey = 0x0001
 	KeyEventFKeyUp       = 0x0002
@@ -130,7 +119,6 @@ func HotKey(keys ...string) {
 			first := uint16(value)
 
 			if len(keys[1]) == 1 {
-				// 小写字母与Fxx键码重合，需大写字母
 				temp := strings.ToUpper(keys[1])
 				second := uint16([]byte(temp)[0])
 				keyDown(first)
